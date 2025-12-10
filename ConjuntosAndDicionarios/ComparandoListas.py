@@ -1,0 +1,8 @@
+listadelaura = set(("leite, pão, café, açúcar").split(", "))
+listadeana = set(("pão, café, biscoito, chocolate").split(", "))
+comparativo = listadelaura.intersection(listadeana)
+exclusivos_laura = listadelaura.difference(listadeana)  
+exlusivos_ana = listadeana.difference(listadelaura)  
+print(f"Lista de Laura {exclusivos_laura}") 
+print(f"Lista de Ana {exlusivos_ana}")
+print(f"Itens em ambas as listas: {comparativo}")

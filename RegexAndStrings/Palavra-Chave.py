@@ -1,0 +1,5 @@
+palavra_chave = input("Insira a palavra chave: ")
+primeiras = (palavra_chave[:3])
+ultimas = (palavra_chave[-3:])
+print(primeiras)
+print(ultimas)
