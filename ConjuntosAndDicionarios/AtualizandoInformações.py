@@ -12,5 +12,6 @@ produto_atualizado = input("Insira o nome do produto a ser atualizado: ")
 nova_quantidade = int(input("Insira a nova quantidade: "))
 if produto_atualizado in estoque:
     estoque[produto_atualizado] = nova_quantidade
-print(estoque)
-    
+    print(estoque)
+else:
+    print("O produto não está no estoque")
