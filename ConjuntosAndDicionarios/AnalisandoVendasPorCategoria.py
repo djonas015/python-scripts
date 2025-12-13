@@ -28,7 +28,7 @@ vendas = {
 } 
 
 for categoria, lista_produtos in vendas.items():
-    segundo_produto = lista_produtos[1]
-    total = segundo_produto["quantidade"] * segundo_produto["valor_unitario"]
+    total = 0
+    total += lista_produtos["quantidade"] * lista_produtos["valor_unitario"]
     print(f"{categoria}: R${total}")
 
