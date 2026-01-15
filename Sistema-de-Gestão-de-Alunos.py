@@ -62,11 +62,25 @@ def listar_alunos():
     for aluno in alunos_cadastrados:
         nome_aluno = aluno["nome"]
         serie_aluno = aluno["ano letivo"]
-        ativo = "matrícula ativada" if aluno["ativo" == True] else "matrícula desativada" #PAREI AQUI, PROXIMO PASSO VALIDAR A FUNÇÃO estado_de_matricula()
-        print(f"{nome_aluno.ljust(30)} | {serie_aluno.ljust(30)} | {ativo}")
+        ativo = "matrícula ativada" if aluno["ativo"] else "matrícula desativada" #ENTENDER O ERRO NO TERMINAL PROVALVEL ERRO COM PRINT
+        print(f"{nome_aluno.ljust(22)} | {serie_aluno.ljust(22)} | {ativo}")
+        voltar_ao_menu()
 
 
 def estado_de_matricula():
+    subtitulo_do_sistema("Estado de Matrícula do Aluno")
+    nome_aluno = input("Insira o nome do aluno que deseja mudar o estado da matrícula: ")
+    aluno_encontrado = False
+    for aluno in alunos_cadastrados:
+        if nome_aluno == aluno["nome"]:
+            aluno_encontrado = True
+            aluno["ativo"] = not aluno["ativo"]
+            mensagem = f"\nO aluno {nome_aluno} está com a matrícula ativada com sucesso" if aluno["ativo"] else f"O aluno {nome_aluno} foi desativado com sucesso"
+            print(mensagem)
+
+    if not aluno_encontrado:
+        print("\nAluno não encontrado")
+        voltar_ao_menu()
 
 
 def escolher_opcao():
