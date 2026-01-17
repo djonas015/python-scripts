@@ -15,11 +15,12 @@ Buscar aluno pelo nome ou matrícula
 Excluir aluno"""
 
 import os
+import sys
 
 
-alunos_cadastrados = [{"nome": "Pedro", "ano": "3°Médio", "ativo": False},
-                      {"nome": "Arthur", "ano": "3°Médio", "ativo": True},
-                      {"nome": "Igor", "ano": "3°Médio", "ativo": False}]
+alunos_cadastrados = [{"nome": "Pedro", "curso": "Economia", "matrícula": False},
+                      {"nome": "Arthur", "curso": "Engenharia", "matrícula": True},
+                      {"nome": "Igor", "curso": "Letras", "matrícula": False}]
 
 
 def nome_do_programa():
@@ -49,10 +50,10 @@ def voltar_ao_menu():
 def cadastrar_alunos():
     subtitulo_do_sistema("Cadastre Novos Alunos")
     nome_do_aluno = input("Digite o nome do aluno: ")
-    ano_letivo_do_aluno = input(f"Digite o ano letivo do {nome_do_aluno}: ")
+    curso_do_aluno = input(f"Digite o ano letivo do {nome_do_aluno}: ")
     dados_do_aluno = {"nome": nome_do_aluno,
-                      "ano": ano_letivo_do_aluno,
-                      "ativo": False}
+                      "curso": curso_do_aluno,
+                      "matrícula": False}
     alunos_cadastrados.append(dados_do_aluno)
     print("O aluno foi cadastrado com sucesso.")
     voltar_ao_menu()
@@ -60,12 +61,12 @@ def cadastrar_alunos():
 
 def listar_alunos():
     subtitulo_do_sistema("Lista de alunos cadastrados")
-    print(f"{"Nome do aluno".ljust(22)} | {"Série".ljust(22)} | Status")
+    print(f"{"Nome do aluno".ljust(22)} | {"Curso".ljust(22)} | Status de Matrícula\n")
     for aluno in alunos_cadastrados:
         nome_aluno = aluno["nome"]
-        serie_aluno = aluno["ano"]
-        ativo = "matrícula ativada" if aluno["ativo"] else "matrícula desativada" #ENTENDER O ERRO NO TERMINAL
-        print(f"{nome_aluno.ljust(22)} | {serie_aluno.ljust(22)} | {ativo}")
+        curso_aluno = aluno["curso"]
+        ativo = "matrícula ativada" if aluno["matrícula"] else "matrícula desativada"
+        print(f"{nome_aluno.ljust(22)} | {curso_aluno.ljust(22)} | {ativo}")
     voltar_ao_menu()
 
 
@@ -76,8 +77,8 @@ def estado_de_matricula():
     for aluno in alunos_cadastrados:
         if nome_aluno == aluno["nome"]:
             aluno_encontrado = True
-            aluno["ativo"] = not aluno["ativo"]
-            mensagem = f"\nO aluno {nome_aluno} está com a matrícula ativada com sucesso" if aluno["ativo"] else f"O aluno {nome_aluno} foi desativado com sucesso"
+            aluno["matrícula"] = not aluno["matrícula"]
+            mensagem = f"\nO aluno {nome_aluno} está com a matrícula ativada com sucesso" if aluno["matrícula"] else f"O aluno {nome_aluno} foi desativado com sucesso"
             print(mensagem)
 
     if not aluno_encontrado:
@@ -116,6 +117,7 @@ def excluir_aluno():
 def sair():
     os.system("cls")
     print("Finalizando o Programa...")
+    sys.exit()
 
 
 def escolher_opcao():
@@ -133,6 +135,7 @@ def escolher_opcao():
     elif opcao_escolhida == 6:
         sair()
     else:
+        print("Opção inválida")
         voltar_ao_menu()
 
 
