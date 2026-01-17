@@ -62,7 +62,7 @@ def listar_alunos():
     for aluno in alunos_cadastrados:
         nome_aluno = aluno["nome"]
         serie_aluno = aluno["ano letivo"]
-        ativo = "matrícula ativada" if aluno["ativo"] else "matrícula desativada" #ENTENDER O ERRO NO TERMINAL PROVALVEL ERRO COM PRINT
+        ativo = "matrícula ativada" if aluno["ativo"] else "matrícula desativada" #ENTENDER O ERRO NO TERMINAL PROVALVEL ERRO COM
         print(f"{nome_aluno.ljust(22)} | {serie_aluno.ljust(22)} | {ativo}")
         voltar_ao_menu()
 
