@@ -17,9 +17,9 @@ Excluir aluno"""
 import os
 
 
-alunos_cadastrados = [{"nome": "Pedro", "ano letivo": "3°Médio", "ativo": False},
-                      {"nome": "Arthur", "ano letivo": "3°Médio", "ativo": True},
-                      {"nome": "Igor", "ano letivo": "3°Médio", "ativo": False}]
+alunos_cadastrados = [{"nome": "Pedro", "ano": "3°Médio", "ativo": False},
+                      {"nome": "Arthur", "ano": "3°Médio", "ativo": True},
+                      {"nome": "Igor", "ano": "3°Médio", "ativo": False}]
 
 
 def nome_do_programa():
@@ -63,7 +63,7 @@ def listar_alunos():
     print(f"{"Nome do aluno".ljust(22)} | {"Série".ljust(22)} | Status")
     for aluno in alunos_cadastrados:
         nome_aluno = aluno["nome"]
-        serie_aluno = aluno["ano letivo"]
+        serie_aluno = aluno["ano"]
         ativo = "matrícula ativada" if aluno["ativo"] else "matrícula desativada" #ENTENDER O ERRO NO TERMINAL
         print(f"{nome_aluno.ljust(22)} | {serie_aluno.ljust(22)} | {ativo}")
     voltar_ao_menu()
@@ -88,33 +88,34 @@ def estado_de_matricula():
 def buscar_aluno():
     subtitulo_do_sistema("Busque o aluno no sistema")
     nome_aluno = input("Nome do aluno: ")
-    serie_aluno = input("Série do aluno: ")
     aluno_encontrado = False
     for aluno in alunos_cadastrados:
         if nome_aluno == aluno["nome"]:
+            mensagem = f"\nAluno {nome_aluno} encontrado com sucesso!"
             aluno_encontrado = True
-        elif nome_aluno == aluno["ano letivo"]:
-            aluno_encontrado = True
-            aluno["ativo"] = not aluno["ativo"]
-            mensagem = f"\n Aluno {nome_aluno} da série {serie_aluno} encontrado com sucesso!"
             print(mensagem)
+            voltar_ao_menu()
     if not aluno_encontrado:
-        print("Aluno não encontrado")
+        print("\nAluno não encontrado")
     voltar_ao_menu()
 
 
 def excluir_aluno():
     subtitulo_do_sistema("Exclua o Aluno do Sistema")
     nome_aluno = input("Insira o nome do aluno que deseja excluir: ")
-    aluno_encontrado = False
     for aluno in alunos_cadastrados:
         if nome_aluno == aluno["nome"]:
-            aluno_encontrado = True
-            nome_aluno["nome"] = None
-        if not aluno_encontrado:
-            print("Aluno não encontrado")
+            alunos_cadastrados.remove(aluno)
+            print("Aluno excluido do sistema")
             voltar_ao_menu()
+    else:
+        print("Aluno não encontrado")
+    voltar_ao_menu()
 
+
+def sair():
+    os.system("cls")
+    print("Finalizando o Programa...")
 
 
 def escolher_opcao():
@@ -129,11 +130,10 @@ def escolher_opcao():
         buscar_aluno()
     elif opcao_escolhida == 5:
         excluir_aluno()
+    elif opcao_escolhida == 6:
+        sair()
     else:
-        opcao_invalida
-
-
-
+        voltar_ao_menu()
 
 
 def main():
