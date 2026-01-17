@@ -31,7 +31,8 @@ def funcionalidades():
     print("2.Listar alunos")
     print("3.Ativar ou Desativar matrícula")
     print("4.Buscar Aluno")
-    print("5.Sair\n")
+    print("5.Excluir Aluno")
+    print("6.Sair\n")
     
 
 def subtitulo_do_sistema(texto):
@@ -59,16 +60,17 @@ def cadastrar_alunos():
 
 def listar_alunos():
     subtitulo_do_sistema("Lista de alunos cadastrados")
+    print(f"{"Nome do aluno".ljust(22)} | {"Série".ljust(22)} | Status")
     for aluno in alunos_cadastrados:
         nome_aluno = aluno["nome"]
         serie_aluno = aluno["ano letivo"]
-        ativo = "matrícula ativada" if aluno["ativo"] else "matrícula desativada" #ENTENDER O ERRO NO TERMINAL PROVALVEL ERRO COM
+        ativo = "matrícula ativada" if aluno["ativo"] else "matrícula desativada" #ENTENDER O ERRO NO TERMINAL
         print(f"{nome_aluno.ljust(22)} | {serie_aluno.ljust(22)} | {ativo}")
-        voltar_ao_menu()
+    voltar_ao_menu()
 
 
 def estado_de_matricula():
-    subtitulo_do_sistema("Estado de Matrícula do Aluno")
+    subtitulo_do_sistema("""Ative ou Desative a matrícula do aluno""")
     nome_aluno = input("Insira o nome do aluno que deseja mudar o estado da matrícula: ")
     aluno_encontrado = False
     for aluno in alunos_cadastrados:
@@ -80,7 +82,39 @@ def estado_de_matricula():
 
     if not aluno_encontrado:
         print("\nAluno não encontrado")
-        voltar_ao_menu()
+    voltar_ao_menu()
+
+
+def buscar_aluno():
+    subtitulo_do_sistema("Busque o aluno no sistema")
+    nome_aluno = input("Nome do aluno: ")
+    serie_aluno = input("Série do aluno: ")
+    aluno_encontrado = False
+    for aluno in alunos_cadastrados:
+        if nome_aluno == aluno["nome"]:
+            aluno_encontrado = True
+        elif nome_aluno == aluno["ano letivo"]:
+            aluno_encontrado = True
+            aluno["ativo"] = not aluno["ativo"]
+            mensagem = f"\n Aluno {nome_aluno} da série {serie_aluno} encontrado com sucesso!"
+            print(mensagem)
+    if not aluno_encontrado:
+        print("Aluno não encontrado")
+    voltar_ao_menu()
+
+
+def excluir_aluno():
+    subtitulo_do_sistema("Exclua o Aluno do Sistema")
+    nome_aluno = input("Insira o nome do aluno que deseja excluir: ")
+    aluno_encontrado = False
+    for aluno in alunos_cadastrados:
+        if nome_aluno == aluno["nome"]:
+            aluno_encontrado = True
+            nome_aluno["nome"] = None
+        if not aluno_encontrado:
+            print("Aluno não encontrado")
+            voltar_ao_menu()
+
 
 
 def escolher_opcao():
@@ -94,7 +128,7 @@ def escolher_opcao():
     elif opcao_escolhida == 4:
         buscar_aluno()
     elif opcao_escolhida == 5:
-        sair()
+        excluir_aluno()
     else:
         opcao_invalida
 
