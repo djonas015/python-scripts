@@ -41,10 +41,7 @@ def tela_inicial():
 
 def voltar_menu():
     input("Insira uma tecla para voltar ao menu: ")
-    os.system("cls")
-    nome_programa()
-    tela_inicial()
-    opcoes()
+    main()
 
 
 def criar_tarefa():
