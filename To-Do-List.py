@@ -28,15 +28,15 @@ tarefas = [{"nome": "Beber Água", "prioridade": "Alta", "status": False},
 
 
 def nome_programa():
-    print("TO DO LIST")
+    print("\nTO DO LIST\n")
 
 
 def tela_inicial():
-    print("""1. Criar tarefa
-             2. Listar tarefas
-             3. Alternar Status
-             4. Alterar prioridade
-             5. Excluir Tarefa""")
+    print("1. Criar tarefa")
+    print("2. Listar tarefas")
+    print("3. Alternar Status")
+    print("4. Alterar prioridade")
+    print("5. Excluir Tarefa")
 
 
 def voltar_menu():
@@ -47,23 +47,23 @@ def voltar_menu():
 def criar_tarefa():
     os.system("cls")
     nome_tarefa = input("Insira a Tarefa: ")
-    prioridade_tarefa = input(f"Insira a prioridade de {nome_tarefa}/ Alta, Média, Baixa:  ")
+    prioridade_tarefa = input(f"Insira a prioridade de {nome_tarefa}/ Alta, Média, Baixa: ")
     dados_tarefa = {"nome": nome_tarefa,
                     "prioridade": prioridade_tarefa,
                     "status": False}
     tarefas.append(dados_tarefa)
-    print("Tarefa marcada com sucesso")
+    print("\nTarefa marcada com sucesso\n")
     voltar_menu()
 
 
 def listar_tarefas():
     os.system("cls")
-    print("Lista de tarefas: ")
+    print("Lista de tarefas: \n")
     for tarefa in tarefas:
         nome_tarefa = tarefa["nome"]
         prioridade_tarefa = tarefa["prioridade"]
-        status_tarefa = "concluida" if tarefa["status"] else "pendente"
-        print(f"{nome_tarefa.ljust(20)} | {prioridade_tarefa.ljust(20)} | {status_tarefa}")
+        status_tarefa = "concluida✅" if tarefa["status"] else "pendente✖️"
+        print(f"{nome_tarefa.ljust(20)} | {prioridade_tarefa.ljust(20)} | {status_tarefa}\n")
     voltar_menu()
 
 
@@ -76,7 +76,7 @@ def status_tarefa():
         if alterando_status == tarefa["nome"]:
             tarefa_encontrada = True
             tarefa["status"] = not tarefa["status"]
-            mensagem = f"O status da {alterando_status} foi alternada com sucesso"
+            mensagem = f"\nO status da {alterando_status} foi alternada com sucesso\n"
             print(mensagem)
             voltar_menu()
 
@@ -94,10 +94,10 @@ def alternar_prioridade():
         if nome_tarefa == tarefa["nome"]:
             tarefa_encontrada = True
             prioridade = tarefa["prioridade"]
-            print(f"Atualmente a '{nome_tarefa}' tem a prioridade '{prioridade}'")
-            alterando_prioridade = input(f"Insira a nova prioridade da tarefa '{nome_tarefa}'")
+            print(f"\nAtualmente a '{nome_tarefa}' tem a prioridade '{prioridade}'\n")
+            alterando_prioridade = input(f"Insira a nova prioridade da tarefa '{nome_tarefa}': ")
             tarefa["prioridade"] = alterando_prioridade
-            print("Operação realizada com sucesso")
+            print("\nOperação realizada com sucesso\n")
             voltar_menu()
     
     if not tarefa_encontrada:
@@ -112,7 +112,7 @@ def excluir_tarefa():
     for tarefa in tarefas:
         if nome_tarefa == tarefa["nome"]:
             tarefas.remove(tarefa)
-            print("Tarefa excluida com sucesso!")
+            print("\nTarefa excluida com sucesso!\n")
             voltar_menu()
     else:
         print("Tarefa não encontrada")
@@ -120,7 +120,7 @@ def excluir_tarefa():
 
 
 def opcoes():
-    opcao = int(input("Insira a opção: "))
+    opcao = int(input("\nInsira a opção: "))
     if opcao == 1:
         criar_tarefa()
     elif opcao == 2:
