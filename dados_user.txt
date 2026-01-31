@@ -1,0 +1,3 @@
+nome : Arthut
+idade : 24
+salario : 3800.0

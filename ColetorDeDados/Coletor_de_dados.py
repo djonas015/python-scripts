@@ -14,10 +14,10 @@ def informacoes_usuario():
             print("Você não pode realizar essa operação")
         else:
             print(f"Olá {nome}, você possui {idade} e possui um sálario de R${salario}")
-            dados = {"nome": {nome},
-                     "idade": {idade},
-                     "salario": {salario}}
-            dados_usuario.append(dados)
+            dados = {"nome": (nome),
+                     "idade": (idade),
+                     "salario": (salario)}
+            dados_usuario.update(dados)
 
 
 def salvando_dados():
