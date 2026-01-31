@@ -1,6 +1,6 @@
-dados_usuario = [{"nome": {},
-                  "idade": {},
-                  "salario": {}}]
+dados_usuario = {"nome": None,
+                 "idade": None,
+                 "salario": None}
 
 
 def informacoes_usuario():
@@ -21,8 +21,9 @@ def informacoes_usuario():
 
 
 def salvando_dados():
-    with open("dados_user.txt", "x", "utf-8") as arquivo:
-        arquivo.writelines(dados_usuario) #Resolvendo esse bug do writelines e afins
+    with open("dados_user.txt", "w", encoding="utf-8") as arquivo:
+        for chave, valor in dados_usuario.items():
+            arquivo.write(f"{chave} : {valor}\n")
 
 
 def main():
